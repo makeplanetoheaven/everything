@@ -8,7 +8,6 @@ function: 新闻检索控制器
 # 引入外部库
 from flask import Blueprint
 
-
 # 引入内部库
 
 

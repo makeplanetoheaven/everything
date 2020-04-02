@@ -16,6 +16,6 @@ def create_controller ():
 	controller = Flask(__name__)
 
 	# news controller
-
+	controller.register_blueprint(blueprint=new_controller_url)
 
 	return controller
