@@ -9,7 +9,7 @@ function: url注册函数
 from flask import Flask
 
 # 引入内部库
-from src.controller.NewsController import new_controller_url
+from src.controller.news import new_controller_url
 
 
 def create_controller ():
