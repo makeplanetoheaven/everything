@@ -9,13 +9,13 @@ function: url注册函数
 from flask import Flask
 
 # 引入内部库
-from src.controller.newsController import new_controller_url
+from src.controller.newsController import news_controller_url
 
 
 def create_controller ():
 	controller = Flask(__name__)
 
 	# news controller
-	controller.register_blueprint(blueprint=new_controller_url)
+	controller.register_blueprint(blueprint=news_controller_url)
 
 	return controller

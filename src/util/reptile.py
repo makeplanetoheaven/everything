@@ -11,8 +11,8 @@ import time
 
 class Reptile:
 	def __init__ (self, wait_time=15):
-		# 存储user agent
-		self.user_agent_list = [
+		# 存储browser info
+		self.browser_info_list = [
 			"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1",
 			"Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11",
 			"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6",
@@ -32,8 +32,8 @@ class Reptile:
 			"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24",
 			"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"]
 
-		# 代理IP
-		self.ip_list = ['http://112.87.71.154:8090',
+		# 存储agent IP
+		self.agent_ip_list = ['http://112.87.71.154:8090',
 		                'http://110.52.235.53:9999',
 		                'http://223.241.116.121:8010',
 		                'http://183.148.148.189:9999']
@@ -41,7 +41,7 @@ class Reptile:
 		# 等待时间
 		self.wait_time = wait_time
 
-	def get_page_content (self, url: str, timeout: int, proxy=None, num_retries=6, charset='gbk')->str:
+	def get_page_content (self, url: str, timeout: int, proxy=None, num_retries=6, charset='utf-8')->str:
 		"""
 		通过指定url地址获取网页内容
 		:param url: 网址
@@ -51,8 +51,8 @@ class Reptile:
 		:param charset: 编码格式
 		:return: 爬取到的网页内容
 		"""
-		# 从user_agent_list中随机抽取出一个字符串
-		ua = random.choice(self.user_agent_list)
+		# 从browser_info_list中随机抽取出一个浏览器信息
+		ua = random.choice(self.browser_info_list)
 
 		# 构造一个完整的User_Agent
 		header = {"User-Agent": ua}
@@ -72,15 +72,11 @@ class Reptile:
 				else:
 					print(u"开始使用代理")
 					time.sleep(self.wait_time)
-					IP = "".join(str(random.choice(self.ip_list)).strip())
+					IP = "".join(str(random.choice(self.agent_ip_list)).strip())
 					proxy = {"http": IP}
 					return self.get_page_content(url, timeout, proxy)
 		else:
 			try:
-				# 随机取IP并去除空格
-				IP = "".join(str(random.choice(self.ip_list)).strip())
-				# 构造一个代理
-				proxy = {"http": IP}
 				# 使用代理来获取response
 				response = requests.get(url, headers=header, proxies=proxy, timeout=timeout)
 				response.encoding = charset
@@ -88,7 +84,10 @@ class Reptile:
 			except:
 				if num_retries > 0:
 					time.sleep(self.wait_time)
-					IP = "".join(str(random.choice(self.ip_list)).strip())
+					# 随机取IP并去除空格
+					IP = "".join(str(random.choice(self.agent_ip_list)).strip())
+					# 构造一个代理
+					proxy = {"http": IP}
 					print(u"正在更换代理，"+str(self.wait_time)+"s后将重新获取第", num_retries, u"次")
 					print(u"当前代理是：", proxy)
 					return self.get_page_content(url, timeout, proxy, num_retries - 1)
