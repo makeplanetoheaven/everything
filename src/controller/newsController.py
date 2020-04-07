@@ -15,10 +15,10 @@ from src.service.newsOperator import *
 news_controller_url = Blueprint('new_controller', __name__, url_prefix='/news')
 class NewsController:
 	@staticmethod
-	@news_controller_url.route('hotnews/', methods=['POST', 'GET'])
+	@news_controller_url.route('hotnews/', methods=['GET'])
 	def hotnews ():
 		"""
-		热点新闻功能实现
+		热点新闻获取功能实现
 		:return:
 		"""
 		news_dict = NewsOperator().get_domain_hotnews()

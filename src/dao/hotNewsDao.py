@@ -6,7 +6,6 @@ function: 热点新闻检索数据层
 """
 
 # 引入外部库
-from bs4 import BeautifulSoup
 import json
 
 # 引入内部库
