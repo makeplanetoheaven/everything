@@ -14,7 +14,7 @@ from src.util.reptile import *
 
 class HotNewsDao:
 	@staticmethod
-	def get_default_hotnews() -> dict:
+	def get_default_hotnews(date: str, nums: str) -> dict:
 		"""
 		获取默认领域热点新闻
 		:return:
@@ -24,8 +24,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'www_www_all_suda_suda',
-			'top_time': '20200408',
-			'top_show_num': '100',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'default_hotnews'
 		}
@@ -40,7 +40,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_video_hotnews() -> dict:
+	def get_video_hotnews(date: str, nums: str) -> dict:
 		"""
 		获取视频领域热点新闻
 		:return:
@@ -50,8 +50,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'video_news_all_by_vv',
-			'top_time': '20200407',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'video_hotnews'
 		}
@@ -66,7 +66,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_image_hotnews () -> dict:
+	def get_image_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取图片领域热点新闻
 		:return:
@@ -76,8 +76,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'total_slide_suda',
-			'top_time': '20200408',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'image_hotnews'
 		}
@@ -92,7 +92,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_china_hotnews () -> dict:
+	def get_china_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取国内领域热点新闻
 		:return:
@@ -102,8 +102,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat':  'news_china_suda',
-			'top_time': '20200408',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'china_hotnews'
 		}
@@ -118,7 +118,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_world_hotnews () -> dict:
+	def get_world_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取国际领域热点新闻
 		:return:
@@ -128,8 +128,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'news_world_suda',
-			'top_time': '20200408',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'world_hotnews'
 		}
@@ -144,7 +144,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_society_hotnews () -> dict:
+	def get_society_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取社会领域热点新闻
 		:return:
@@ -154,8 +154,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'news_society_suda',
-			'top_time': '20200408',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'society_hotnews'
 		}
@@ -170,7 +170,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_sports_hotnews () -> dict:
+	def get_sports_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取体育领域热点新闻
 		:return:
@@ -180,8 +180,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'tyxwpl',
-			'top_time': '20200407',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'sports_hotnews'
 		}
@@ -196,7 +196,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_finance_hotnews () -> dict:
+	def get_finance_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取财经领域热点新闻
 		:return:
@@ -206,8 +206,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'finance_0_suda',
-			'top_time': '20200407',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'finance_hotnews'
 		}
@@ -222,7 +222,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_ent_hotnews () -> dict:
+	def get_ent_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取娱乐领域热点新闻
 		:return:
@@ -232,8 +232,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'ent_suda',
-			'top_time': '20200407',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'ent_hotnews'
 		}
@@ -248,7 +248,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_tech_hotnews () -> dict:
+	def get_tech_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取科技领域热点新闻
 		:return:
@@ -258,8 +258,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'tech_news_suda',
-			'top_time': '20200407',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'tech_hotnews'
 		}
@@ -274,7 +274,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_mil_hotnews () -> dict:
+	def get_mil_hotnews (date: str, nums: str) -> dict:
 		"""
 		获取军事领域热点新闻
 		:return:
@@ -284,8 +284,8 @@ class HotNewsDao:
 		parm = {
 			'top_type': 'day',
 			'top_cat': 'news_mil_suda',
-			'top_time': '20200408',
-			'top_show_num': '50',
+			'top_time': date,
+			'top_show_num': nums,
 			'top_order': 'DESC',
 			'js_var': 'mil_hotnews'
 		}
