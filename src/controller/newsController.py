@@ -18,9 +18,11 @@ class NewsController:
 	@news_controller_url.route('hotnews/', methods=['GET'])
 	def hotnews ():
 		"""
-		热点新闻获取功能实现
+		热点新闻获取检索功能实现
 		:return:
 		"""
+		# 参数获取及预处理
+
 		news_dict = NewsOperator().get_domain_hotnews()
 
 		return news_dict
