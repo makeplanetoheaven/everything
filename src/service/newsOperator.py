@@ -9,6 +9,7 @@ function: 新闻检索业务逻辑层
 
 # 引入内部库
 from src.dao.hotNewsDao import *
+from src.entity.retrieveResult import *
 
 
 class NewsOperator:
@@ -28,24 +29,24 @@ class NewsOperator:
 			'mil': HotNewsDao().get_mil_hotnews,
 		}
 
-	def get_domain_hotnews (self, domain: str, date: str, period: str, nums: str) -> dict:
+	def get_domain_hotnews (self, domain: str, date: str, nums: str) -> RetrieveResult:
 		"""
 		获取指定领域的热点新闻
 		:param domain:
 		:param date:
-		:param period: 'pre-las'
 		:param nums:
 		:return:
 		"""
-		if date != '':
-			return self.domain_hotnews[domain](date=date, nums=nums)
-		else:
-			data = None
-			pre_date, las_date = map(int, period.split('-'))
-			for i in range(pre_date, las_date + 1):
-				if data:
-					data['data'] += self.domain_hotnews[domain](date=str(i), nums=nums)['data']
-				else:
-					data = self.domain_hotnews[domain](date=str(i), nums=nums)
+		# 数据处理
+		d_list = domain.split('-')
+		pre_date, las_date = map(int, date.split('-'))
 
-			return data
+		# 检索对象创建
+		data = RetrieveResult(intent='news', subintent='hotnews')
+
+		# 信息检索
+		for i in range(pre_date, las_date + 1):
+			for d in d_list:
+				data.set_data(self.domain_hotnews[d](date=str(i), nums=nums))
+
+		return data

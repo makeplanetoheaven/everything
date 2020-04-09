@@ -14,7 +14,7 @@ from src.util.reptile import *
 
 class HotNewsDao:
 	@staticmethod
-	def get_default_hotnews(date: str, nums: str) -> dict:
+	def get_default_hotnews(date: str, nums: str) -> list:
 		"""
 		获取默认领域热点新闻
 		:return:
@@ -33,14 +33,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'default',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_video_hotnews(date: str, nums: str) -> dict:
+	def get_video_hotnews(date: str, nums: str) -> list:
 		"""
 		获取视频领域热点新闻
 		:return:
@@ -59,14 +72,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'video',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_image_hotnews (date: str, nums: str) -> dict:
+	def get_image_hotnews (date: str, nums: str) -> list:
 		"""
 		获取图片领域热点新闻
 		:return:
@@ -85,14 +111,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'image',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_china_hotnews (date: str, nums: str) -> dict:
+	def get_china_hotnews (date: str, nums: str) -> list:
 		"""
 		获取国内领域热点新闻
 		:return:
@@ -111,14 +150,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'china',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_world_hotnews (date: str, nums: str) -> dict:
+	def get_world_hotnews (date: str, nums: str) -> list:
 		"""
 		获取国际领域热点新闻
 		:return:
@@ -137,14 +189,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'world',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_society_hotnews (date: str, nums: str) -> dict:
+	def get_society_hotnews (date: str, nums: str) -> list:
 		"""
 		获取社会领域热点新闻
 		:return:
@@ -163,14 +228,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'society',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_sports_hotnews (date: str, nums: str) -> dict:
+	def get_sports_hotnews (date: str, nums: str) -> list:
 		"""
 		获取体育领域热点新闻
 		:return:
@@ -189,14 +267,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'sports',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_finance_hotnews (date: str, nums: str) -> dict:
+	def get_finance_hotnews (date: str, nums: str) -> list:
 		"""
 		获取财经领域热点新闻
 		:return:
@@ -215,14 +306,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'finance',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_ent_hotnews (date: str, nums: str) -> dict:
+	def get_ent_hotnews (date: str, nums: str) -> list:
 		"""
 		获取娱乐领域热点新闻
 		:return:
@@ -241,14 +345,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'ent',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_tech_hotnews (date: str, nums: str) -> dict:
+	def get_tech_hotnews (date: str, nums: str) -> list:
 		"""
 		获取科技领域热点新闻
 		:return:
@@ -267,14 +384,27 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'tech',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data
 
 	@staticmethod
-	def get_mil_hotnews (date: str, nums: str) -> dict:
+	def get_mil_hotnews (date: str, nums: str) -> list:
 		"""
 		获取军事领域热点新闻
 		:return:
@@ -293,8 +423,21 @@ class HotNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
+		news_list = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))["data"]
 
 		# 3.新闻内容格式化
-		data = json.loads(page_content.replace('var ' + parm['js_var'] + ' = ', '').rstrip(';\n'))
+		data = []
+		for item in news_list:
+			hotnews = {
+				'domain': 'mil',
+				'author': item['author'],
+				'create_date': item['create_date'],
+				'create_time': item['create_time'],
+				'id': item['id'],
+				'media': item['media'],
+				'title': item['title'],
+				'url': item['url'],
+			}
+			data.append(hotnews)
 
 		return data

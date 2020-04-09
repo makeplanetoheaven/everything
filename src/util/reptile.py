@@ -1,5 +1,10 @@
 # coding=utf-8
 
+"""
+author: wlc
+function: 网络爬虫类
+"""
+
 # 引入外部库
 import requests
 import random
