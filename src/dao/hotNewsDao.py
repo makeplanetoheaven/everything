@@ -14,7 +14,7 @@ from src.util.reptile import *
 
 class HotNewsDao:
 	@staticmethod
-	def get_default_hotnews(date: str, nums: str) -> list:
+	def get_default_hotnews (date: str, nums: str) -> list:
 		"""
 		获取默认领域热点新闻
 		:return:
@@ -53,7 +53,7 @@ class HotNewsDao:
 		return data
 
 	@staticmethod
-	def get_video_hotnews(date: str, nums: str) -> list:
+	def get_video_hotnews (date: str, nums: str) -> list:
 		"""
 		获取视频领域热点新闻
 		:return:
