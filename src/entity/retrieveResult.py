@@ -15,12 +15,15 @@ class RetrieveResult:
 		"""
 		数据初始化
 		:param intent:
-		:param domain:
+		:param subintent:
 		"""
+		# 配置项
 		self.conf = {
 			'intent': intent,
 			'subintent': subintent,
 		}
+
+		# 数据项
 		self.data = []
 
 	def set_data(self, data_list: list) -> None:
