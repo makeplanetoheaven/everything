@@ -9,6 +9,7 @@ function: 新闻检索业务逻辑层
 
 # 引入内部库
 from src.dao.hotNewsDao import *
+from src.dao.searchNewsDao import *
 from src.entity.retrieveResult import *
 
 
@@ -50,3 +51,10 @@ class NewsOperator:
 				data.set_data(self.domain_hotnews[d](date=str(i), nums=nums))
 
 		return data
+
+	def get_search_newsrsult(self):
+		"""
+		获取基于关键字的新闻检索结果
+		:return:
+		"""
+		SearchNewsDao.get_search_news()
