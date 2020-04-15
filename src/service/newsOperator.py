@@ -52,9 +52,12 @@ class NewsOperator:
 
 		return data
 
-	def get_search_newsrsult(self):
+	def get_search_news(self):
 		"""
 		获取基于关键字的新闻检索结果
 		:return:
 		"""
-		SearchNewsDao.get_search_news()
+		data = RetrieveResult(intent='news', subintent='search')
+		data.set_data(SearchNewsDao.get_search_result(['云南抚仙湖']))
+
+		return data

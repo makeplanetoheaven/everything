@@ -77,7 +77,7 @@ class NewsController:
 		# 	req_nums = '10'
 
 		# 功能调用
-		data_object = NewsOperator().get_search_newsrsult()
-		# data_dict = data_object.get_dict_data()
+		data_object = NewsOperator().get_search_news()
+		data_dict = data_object.get_dict_data()
 
-		return {}
+		return data_dict

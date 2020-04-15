@@ -6,7 +6,8 @@ function: 基于关键字新闻检索数据层
 """
 
 # 引入外部库
-import json
+import re
+from bs4 import BeautifulSoup
 
 # 引入内部库
 from src.util.reptile import *
@@ -14,20 +15,20 @@ from src.util.reptile import *
 
 class SearchNewsDao:
 	@staticmethod
-	def get_search_news () -> list:
+	def get_search_result (key_list: list) -> list:
 		"""
-		获取默认领域热点新闻
+		获取指定关键字的新闻
 		:return:
 		"""
 		# 1.参数设置
 		url = 'https://search.sina.com.cn/?'
 		parm = {
-			'q': '人工智能',
+			'q': '+'.join(key_list),
 			'c': 'news',
 			'range': 'title',
 			'stime': '',
 			'etime': '',
-			'size': '10',
+			'size': '20',
 			'sort': 'time',
 			'page': ''
 		}
@@ -35,21 +36,21 @@ class SearchNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
-		print(page_content)
+		bs = BeautifulSoup(page_content,"html.parser")
+		news_list = bs.body.find_all("div", {'class': 'box-result'})
 
 		# # 3.新闻内容格式化
-		# data = []
-		# for item in news_list:
-		# 	hotnews = {
-		# 		'domain': 'default',
-		# 		'author': item['author'],
-		# 		'create_date': item['create_date'],
-		# 		'create_time': item['create_time'],
-		# 		'id': item['id'],
-		# 		'media': item['media'],
-		# 		'title': item['title'],
-		# 		'url': item['url'],
-		# 	}
-		# 	data.append(hotnews)
+		data = []
+		for item in news_list:
+			author, date, time = re.sub('[\n,\t]', '', str(item.span.contents[0])).split(' ')
+			a = item.a
+			news = {
+				'author': author,
+				'create_date': date,
+				'create_time': time,
+				'title': re.sub('[<font clr="red">,</font>]', '', ''.join(map(str, a.contents))),
+				'url': a.get('href'),
+			}
+			data.append(news)
 
-		return []
+		return data
