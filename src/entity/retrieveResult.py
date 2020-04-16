@@ -41,7 +41,23 @@ class RetrieveResult:
 		"""
 		data = {
 			'conf': self.conf,
-			'data': self.data
+			'data': self.data,
+			'status': 1
+		}
+
+		return data
+
+	def get_exception_data(self, reason) -> dict:
+		"""
+		异常检索数据构建
+		:param reason:
+		:return:
+		"""
+		data = {
+			'conf': self.conf,
+			'data': self.data,
+			'status': 0,
+			'reason': reason
 		}
 
 		return data

@@ -15,9 +15,14 @@ from src.util.reptile import *
 
 class SearchNewsDao:
 	@staticmethod
-	def get_search_result (key_list: list) -> list:
+	def get_search_result (key_list: list, method: str, stime: str, etime: str, page: str) -> list:
 		"""
 		获取指定关键字的新闻
+		:param key_list:
+		:param method:
+		:param stime:
+		:param etime:
+		:param page:
 		:return:
 		"""
 		# 1.参数设置
@@ -25,12 +30,12 @@ class SearchNewsDao:
 		parm = {
 			'q': '+'.join(key_list),
 			'c': 'news',
-			'range': 'title',
-			'stime': '',
-			'etime': '',
-			'size': '20',
+			'range': method,
+			'stime': stime,
+			'etime': etime,
+			'size': '10',
 			'sort': 'time',
-			'page': ''
+			'page': page
 		}
 
 		# 2.新闻内容获取

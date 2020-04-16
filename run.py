@@ -13,8 +13,7 @@ import sys
 
 # 引入内部库
 from src.controller import create_controller
-
-
+from src.util import globalArgs
 
 
 if __name__ == '__main__':
@@ -25,6 +24,7 @@ if __name__ == '__main__':
 		port = 18080
 
 	# 系统初始化
+	globalArgs._init_()
 
 	# sever启动
 	controller = create_controller()
