@@ -82,9 +82,9 @@ class NewsOperator:
 		data = RetrieveResult(intent=self.intent, subintent=self.subintent[1])
 
 		# 信息检索
-		page = 0
+		page = 1
 		data_list = []
-		while len(data_list) >= nums:
+		while len(data_list) < nums:
 			news_list = SearchNewsDao.get_search_result(key_list=keys, method=self.search_method[method], stime=stime,
 			                                            etime=etime, page=str(page))
 			if len(news_list) == 0:

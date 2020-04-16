@@ -41,7 +41,7 @@ class NewsController:
 		if len(req_date) == 0:
 			cur_t = time.strftime(globalArgs.get_value('io_date'), time.localtime(time.time()))
 			req_date = [cur_t, cur_t]
-		if req_nums == '':
+		if req_nums == -1:
 			req_nums = 10
 
 		# 功能调用
@@ -77,7 +77,7 @@ class NewsController:
 			req_method = '标题'
 		if len(req_date) == 0:
 			req_date = ['', '']
-		if req_nums == '':
+		if req_nums == -1:
 			req_nums = 20
 
 		# 功能调用
