@@ -72,7 +72,7 @@ class NewsController:
 
 		# 参数预处理
 		if len(req_keys) == 0:
-			return NewsOperator().exception_handling(reason='缺失关键字keys参数！', fn_index=1)
+			return NewsOperator().exception_handling(reason='缺失搜索关键字参数！', fn_index=1)
 		if req_method == '':
 			req_method = '标题'
 		if len(req_date) == 0:

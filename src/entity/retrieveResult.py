@@ -57,7 +57,7 @@ class RetrieveResult:
 			'conf': self.conf,
 			'data': self.data,
 			'status': 0,
-			'reason': reason
+			'exception_reason': reason
 		}
 
 		return data

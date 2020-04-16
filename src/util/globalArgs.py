@@ -25,10 +25,6 @@ def _init_ ():
 	__global_dict['io_date'] = '%Y-%m-%d'
 	# </editor-fold>
 
-	# <editor-fold desc="异常原因">
-	__global_dict['io_date'] = '%Y-%m-%d'
-	# </editor-fold>
-
 	pass
 
 

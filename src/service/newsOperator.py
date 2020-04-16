@@ -39,6 +39,12 @@ class NewsOperator:
 			'军事': HotNewsDao().get_mil_hotnews,
 		}
 
+		# 关键字新闻检索参数
+		self.search_method = {
+			'标题': 'title',
+			'内容': 'all'
+		}
+
 	def get_domain_hotnews (self, domain: list, date: list, nums: int) -> RetrieveResult:
 		"""
 		获取指定领域的热点新闻
@@ -79,7 +85,8 @@ class NewsOperator:
 		page = 0
 		data_list = []
 		while len(data_list) >= nums:
-			news_list = SearchNewsDao.get_search_result(key_list=keys, method=method, stime=stime, etime=etime, page=str(page))
+			news_list = SearchNewsDao.get_search_result(key_list=keys, method=self.search_method[method], stime=stime,
+			                                            etime=etime, page=str(page))
 			if len(news_list) == 0:
 				break
 			data_list += news_list
