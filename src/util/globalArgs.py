@@ -23,6 +23,7 @@ def _init_ ():
 
 	# <editor-fold desc="数据接口">
 	__global_dict['io_date'] = '%Y-%m-%d'
+	__global_dict['io_time'] = '%H:%M:%S'
 	# </editor-fold>
 
 	pass
