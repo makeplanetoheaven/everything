@@ -35,32 +35,39 @@ class Reptile:
 			"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3",
 			"Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3",
 			"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24",
-			"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"]
+			"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"
+		]
 
 		# 存储agent IP
-		self.agent_ip_list = ['http://112.87.71.154:8090',
-		                'http://110.52.235.53:9999',
-		                'http://223.241.116.121:8010',
-		                'http://183.148.148.189:9999']
+		self.agent_ip_list = [
+			'http://112.87.71.154:8090',
+			'http://110.52.235.53:9999',
+			'http://223.241.116.121:8010',
+			'http://183.148.148.189:9999'
+		]
 
 		# 等待时间
 		self.wait_time = wait_time
 
-	def get_page_content (self, url: str, timeout: int, proxy=None, num_retries=6, charset='utf-8')->str:
+	def get_page_content (self, url: str, timeout: int, is_ua=True, proxy=None, num_retries=6, charset='utf-8')->str:
 		"""
 		通过指定url地址获取网页内容
 		:param url: 网址
 		:param timeout: 超时时间设置
+		:param is_ua: 是否使用浏览器信息
 		:param proxy: 代理
 		:param num_retries: 重试次数
 		:param charset: 编码格式
 		:return: 爬取到的网页内容
 		"""
 		# 从browser_info_list中随机抽取出一个浏览器信息
-		ua = random.choice(self.browser_info_list)
+		if is_ua:
+			ua = random.choice(self.browser_info_list)
+		else:
+			ua = ""
 
 		# 构造一个完整的User_Agent
-		header = {"User-Agent": ua}
+		header = {"User-Agent": ua, "Cookie": ""}
 
 		# 当代理为空时，不使用代理获取response
 		if proxy is None:

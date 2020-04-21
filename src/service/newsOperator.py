@@ -26,17 +26,17 @@ class NewsOperator:
 
 		# 领域热点新闻调用接口
 		self.domain_hotnews = {
-			'默认': HotNewsDao().get_default_hotnews,
-			'视频': HotNewsDao().get_video_hotnews,
-			'图片': HotNewsDao().get_image_hotnews,
-			'国内': HotNewsDao().get_china_hotnews,
-			'国际': HotNewsDao().get_world_hotnews,
-			'社会': HotNewsDao().get_society_hotnews,
-			'体育': HotNewsDao().get_sports_hotnews,
-			'财经': HotNewsDao().get_finance_hotnews,
-			'娱乐': HotNewsDao().get_ent_hotnews,
-			'科技': HotNewsDao().get_tech_hotnews,
-			'军事': HotNewsDao().get_mil_hotnews,
+			'默认': HotNewsDao.get_default_hotnews,
+			'视频': HotNewsDao.get_video_hotnews,
+			'图片': HotNewsDao.get_image_hotnews,
+			'国内': HotNewsDao.get_china_hotnews,
+			'国际': HotNewsDao.get_world_hotnews,
+			'社会': HotNewsDao.get_society_hotnews,
+			'体育': HotNewsDao.get_sports_hotnews,
+			'财经': HotNewsDao.get_finance_hotnews,
+			'娱乐': HotNewsDao.get_ent_hotnews,
+			'科技': HotNewsDao.get_tech_hotnews,
+			'军事': HotNewsDao.get_mil_hotnews,
 		}
 
 		# 关键字新闻检索参数
