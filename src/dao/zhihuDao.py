@@ -23,7 +23,7 @@ class ZhihuDao:
 		# 1.参数设置
 		url = 'https://www.zhihu.com/billboard'
 
-		# 2.新闻内容获取
+		# 2.内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url, is_ua=False, timeout=3)
 		content = BeautifulSoup(page_content, "html.parser")
@@ -31,7 +31,7 @@ class ZhihuDao:
 		hot_json = json.loads(hot_data)
 		hot_list = hot_json['initialState']['topstory']['hotList']
 
-		# 3.新闻内容格式化
+		# 3.内容格式化
 		data = []
 		for index, item in enumerate(hot_list):
 			hot = {
