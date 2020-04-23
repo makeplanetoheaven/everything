@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 from src.util.reptile import *
 
 
-class zhihuDao:
+class ZhihuDao:
 	@staticmethod
 	def get_billboard_result () -> list:
 		"""
@@ -33,9 +33,10 @@ class zhihuDao:
 
 		# 3.新闻内容格式化
 		data = []
-		for item in hot_list:
+		for index, item in enumerate(hot_list):
 			hot = {
 				'id': item['id'],
+				'index': index,
 				'title': item['target']['titleArea']['text'],
 				'abstract': item['target']['excerptArea']['text'],
 				'url': item['target']['link']['url'],
