@@ -17,7 +17,7 @@ class ZhihuDao:
 	@staticmethod
 	def get_billboard_result () -> list:
 		"""
-		获取默认领域热点新闻
+		获取知乎热榜搜索结果
 		:return:
 		"""
 		# 1.参数设置

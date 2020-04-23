@@ -17,7 +17,7 @@ class WeiboDao:
 	@staticmethod
 	def get_realtimehot_result () -> list:
 		"""
-		获取默认领域热点新闻
+		获取微博热搜搜索结果
 		:return:
 		"""
 		# 1.参数设置
