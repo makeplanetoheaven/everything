@@ -16,7 +16,7 @@ from src.entity.retrieveResult import *
 class NewsOperator:
 	def __init__ (self):
 		# 该业务逻辑功能
-		self.intent = '新闻'
+		self.intent = '新闻检索'
 
 		# 该业务逻辑子功能
 		self.subintent = {

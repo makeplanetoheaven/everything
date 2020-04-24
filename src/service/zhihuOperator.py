@@ -15,7 +15,7 @@ from src.entity.retrieveResult import *
 class ZhihuOperator:
 	def __init__ (self):
 		# 该业务逻辑功能
-		self.intent = '知乎'
+		self.intent = '知乎检索'
 
 		# 该业务逻辑子功能
 		self.subintent = {

@@ -15,7 +15,7 @@ from src.entity.retrieveResult import *
 class WeiboOperator:
 	def __init__ (self):
 		# 该业务逻辑功能
-		self.intent = '微博'
+		self.intent = '微博检索'
 
 		# 该业务逻辑子功能
 		self.subintent = {
