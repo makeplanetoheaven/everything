@@ -12,6 +12,7 @@ from flask import Flask
 from src.controller.newsController import news_controller_url
 from src.controller.zhihuController import zhihu_controller_url
 from src.controller.weiboController import weibo_controller_url
+from src.controller.encyclopediaController import encyclopedia_controller_url
 
 
 def create_controller ():
@@ -25,5 +26,8 @@ def create_controller ():
 
 	# weibo controller
 	controller.register_blueprint(blueprint=weibo_controller_url)
+
+	# encyclopedia controller
+	controller.register_blueprint(blueprint=encyclopedia_controller_url)
 
 	return controller
