@@ -26,8 +26,11 @@ class WeiboController:
 		}
 		:return:
 		"""
+		# 对象创建
+		service = WeiboOperator()
+
 		# 功能调用
-		data_object = WeiboOperator().get_realtimehot()
+		data_object = service.get_realtimehot()
 		data_dict = data_object.get_dict_data()
 
 		return data_dict

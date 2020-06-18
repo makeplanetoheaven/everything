@@ -26,8 +26,11 @@ class ZhihuController:
 		}
 		:return:
 		"""
+		# 对象创建
+		service = ZhihuOperator()
+
 		# 功能调用
-		data_object = ZhihuOperator().get_billboard()
+		data_object = service.get_billboard()
 		data_dict = data_object.get_dict_data()
 
 		return data_dict
