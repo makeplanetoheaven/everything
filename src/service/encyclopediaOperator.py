@@ -38,10 +38,8 @@ class EncyclopediaOperator:
 		:param nums:
 		:return:
 		"""
-		# 数据处理
-
 		# 检索对象创建
-		data = RetrieveResult(intent=self.intent, subintent=self.subintent[1])
+		data = RetrieveResult(intent=self.intent, subintent=self.subintent[0])
 
 		# 信息检索
 		page = 1
