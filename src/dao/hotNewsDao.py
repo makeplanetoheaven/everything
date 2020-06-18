@@ -17,6 +17,8 @@ class HotNewsDao:
 	def get_default_hotnews (date: str, nums: str) -> list:
 		"""
 		获取默认领域热点新闻
+		:param date:
+		:param nums:
 		:return:
 		"""
 		# 1.参数设置

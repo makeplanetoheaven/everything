@@ -44,7 +44,7 @@ class EncyclopediaController:
 		if req_method == '':
 			req_method = '标题'
 		if req_nums == -1:
-			req_nums = 20
+			req_nums = 5
 
 		# 功能调用
 		data_object = service.get_search_content(keys=req_keys, method=req_method, nums=req_nums)

@@ -2,7 +2,7 @@
 
 """
 author: wlc
-function: 基于关键字新闻检索数据层
+function: 百科检索数据层
 """
 
 # 引入外部库
@@ -13,15 +13,13 @@ from bs4 import BeautifulSoup
 from src.util.reptile import *
 
 
-class SearchNewsDao:
+class EncyclopediaDao:
 	@staticmethod
-	def get_search_result (key_list: list, method: str, stime: str, etime: str, page: str) -> list:
+	def get_keys_result (key_list: list, method: str, page: str) -> list:
 		"""
-		获取指定关键字的新闻
+		获取指定关键字的百科检索结果
 		:param key_list:
 		:param method:
-		:param stime:
-		:param etime:
 		:param page:
 		:return:
 		"""

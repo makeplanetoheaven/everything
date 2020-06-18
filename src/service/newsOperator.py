@@ -71,6 +71,10 @@ class NewsOperator:
 	def get_search_news(self, keys: list, method: str, date: list, nums: int) -> RetrieveResult:
 		"""
 		获取基于关键字的新闻检索结果
+		:param keys:
+		:param method:
+		:param date:
+		:param nums:
 		:return:
 		"""
 		# 数据处理

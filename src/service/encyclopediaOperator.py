@@ -19,7 +19,8 @@ class EncyclopediaOperator:
 
 		# 该业务逻辑子功能
 		self.subintent = {
-			0: '关键字检索'
+			0: '关键字检索',
+			1: 'FAQ检索'
 		}
 
 		# 关键字百科检索参数
@@ -32,6 +33,9 @@ class EncyclopediaOperator:
 	def get_search_content(self, keys: list, method: str, nums: int) -> RetrieveResult:
 		"""
 		获取基于关键字的百科检索结果
+		:param keys:
+		:param method:
+		:param nums:
 		:return:
 		"""
 		# 数据处理
@@ -43,8 +47,7 @@ class EncyclopediaOperator:
 		page = 1
 		data_list = []
 		while len(data_list) < nums:
-			news_list = SearchNewsDao.get_search_result(key_list=keys, method=self.search_method[method], stime=stime,
-			                                            etime=etime, page=str(page))
+			news_list = EncyclopediaDao.get_keys_result(key_list=keys, method=self.search_method[method], page=str(page))
 			if len(news_list) == 0:
 				break
 			data_list += news_list
