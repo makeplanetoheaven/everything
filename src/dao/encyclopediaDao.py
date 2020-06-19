@@ -15,9 +15,9 @@ from src.util.reptile import *
 
 class EncyclopediaDao:
 	@staticmethod
-	def get_full_result (key: str) -> list:
+	def get_content_result (key: str) -> list:
 		"""
-		获取指定关键字的百科全文检索结果
+		获取指定关键字的百科内容检索结果
 		:param key:
 		:return:
 		"""
