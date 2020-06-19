@@ -41,7 +41,7 @@ class SearchNewsDao:
 		# 2.新闻内容获取
 		reptile = Reptile()
 		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
-		bs = BeautifulSoup(page_content,"html.parser")
+		bs = BeautifulSoup(page_content, "html.parser")
 		news_list = bs.body.find_all("div", {'class': 'box-result'})
 
 		# # 3.新闻内容格式化
