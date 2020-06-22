@@ -18,7 +18,7 @@ news_controller_url = Blueprint('new_controller', __name__, url_prefix='/news')
 
 class NewsController:
 	@staticmethod
-	@news_controller_url.route('hotnews/', methods=['GET'])
+	@news_controller_url.route('hotnews/', methods=['POST'])
 	def hotnews () -> dict:
 		"""
 		热点新闻检索功能实现
@@ -54,7 +54,7 @@ class NewsController:
 		return data_dict
 
 	@staticmethod
-	@news_controller_url.route('search/', methods=['GET'])
+	@news_controller_url.route('search/', methods=['POST'])
 	def search() -> dict:
 		"""
 		基于关键字新闻检索功能实现

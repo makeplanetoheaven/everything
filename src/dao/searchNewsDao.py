@@ -44,7 +44,7 @@ class SearchNewsDao:
 		bs = BeautifulSoup(page_content, "html.parser")
 		news_list = bs.body.find_all("div", {'class': 'box-result'})
 
-		# # 3.新闻内容格式化
+		# 3.新闻内容格式化
 		data = []
 		for item in news_list:
 			author, date, time = re.sub('[\n,\t]', '', str(item.span.contents[0])).split(' ')

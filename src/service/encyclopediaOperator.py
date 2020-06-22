@@ -25,32 +25,22 @@ class EncyclopediaOperator:
 
 		# 关键字百科检索参数
 		self.search_method = {
-			'标题': 'title',
-			'全文': 'all',
-			'词条': ''
+			'内容': EncyclopediaDao.get_key_content,
+			'标题': EncyclopediaDao.get_key_title
 		}
 
-	def get_search_content(self, keys: list, method: str, nums: int) -> RetrieveResult:
+	def get_search_key(self, key: str, method: str) -> RetrieveResult:
 		"""
 		获取基于关键字的百科检索结果
-		:param keys:
+		:param key:
 		:param method:
-		:param nums:
 		:return:
 		"""
 		# 检索对象创建
 		data = RetrieveResult(intent=self.intent, subintent=self.subintent[0])
 
 		# 信息检索
-		page = 1
-		data_list = []
-		while len(data_list) < nums:
-			news_list = EncyclopediaDao.get_keys_result(key_list=keys, method=self.search_method[method], page=str(page))
-			if len(news_list) == 0:
-				break
-			data_list += news_list
-			page += 1
-		data.set_data(data_list)
+		data.set_data(self.search_method[method](key=key))
 
 		return data
 

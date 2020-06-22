@@ -18,36 +18,32 @@ encyclopedia_controller_url = Blueprint('encyclopedia_controller', __name__, url
 
 class EncyclopediaController:
 	@staticmethod
-	@encyclopedia_controller_url.route('search_keys/', methods=['GET'])
+	@encyclopedia_controller_url.route('search_keys/', methods=['POST'])
 	def search_keys() -> dict:
 		"""
 		基于关键字百科检索功能实现
 		{
-		'keys': list, [k1, k2, ...] 必填
+		'key': string 必填
 		'method': string 可空
-		'nums': int 可空
 		}
 		:return:
 		"""
 		# 参数获取
 		param = request.get_json()
-		req_keys = param['keys']
+		req_key = param['key']
 		req_method = param['method']
-		req_nums = param['nums']
 
 		# 对象创建
 		service = EncyclopediaOperator()
 
 		# 参数预处理
-		if len(req_keys) == 0:
+		if len(req_key) == 0:
 			return service.exception_handling(reason='缺失搜索关键字参数！', fn_index=0)
 		if req_method == '':
-			req_method = '标题'
-		if req_nums == -1:
-			req_nums = 5
+			req_method = '内容'
 
 		# 功能调用
-		data_object = service.get_search_content(keys=req_keys, method=req_method, nums=req_nums)
+		data_object = service.get_search_key(key=req_key, method=req_method)
 		data_dict = data_object.get_dict_data()
 
 		return data_dict
