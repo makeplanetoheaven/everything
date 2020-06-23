@@ -47,3 +47,34 @@ class EncyclopediaController:
 		data_dict = data_object.get_dict_data()
 
 		return data_dict
+
+	@staticmethod
+	@encyclopedia_controller_url.route('search_faq/', methods=['POST'])
+	def search_faq() -> dict:
+		"""
+		基于faq百科检索功能实现
+		{
+		'query': string 必填
+		'nums': int 可空
+		}
+		:return:
+		"""
+		# 参数获取
+		param = request.get_json()
+		req_query = param['query']
+		req_nums = param['nums']
+
+		# 对象创建
+		service = EncyclopediaOperator()
+
+		# 参数预处理
+		if len(req_query) == 0:
+			return service.exception_handling(reason='缺失搜索问题参数！', fn_index=1)
+		if req_nums == -1:
+			req_nums = 5
+
+		# 功能调用
+		data_object = service.get_search_faq(query=req_query, nums=req_nums)
+		data_dict = data_object.get_dict_data()
+
+		return data_dict

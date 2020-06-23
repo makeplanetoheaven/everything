@@ -95,7 +95,7 @@ class NewsOperator:
 				break
 			data_list += news_list
 			page += 1
-		data.set_data(data_list)
+		data.set_data(data_list[:nums])
 
 		return data
 

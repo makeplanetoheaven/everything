@@ -20,7 +20,8 @@ class EncyclopediaOperator:
 		# 该业务逻辑子功能
 		self.subintent = {
 			0: '关键字检索',
-			1: 'FAQ检索'
+			1: 'FAQ检索',
+			2: 'KG检索'
 		}
 
 		# 关键字百科检索参数
@@ -41,6 +42,29 @@ class EncyclopediaOperator:
 
 		# 信息检索
 		data.set_data(self.search_method[method](key=key))
+
+		return data
+
+	def get_search_faq(self, query: str, nums: int) -> RetrieveResult:
+		"""
+		获取基于faq的百科检索结果
+		:param query:
+		:param nums:
+		:return:
+		"""
+		# 检索对象创建
+		data = RetrieveResult(intent=self.intent, subintent=self.subintent[1])
+
+		# 信息检索
+		page = 1
+		data_list = []
+		while len(data_list) < nums:
+			faq_list = EncyclopediaDao.get_faq_content(query=query, page=str(page))
+			if len(faq_list) == 0:
+				break
+			data_list += faq_list
+			page += 1
+		data.set_data(data_list[:nums])
 
 		return data
 
