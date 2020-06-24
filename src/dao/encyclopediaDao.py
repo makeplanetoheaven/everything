@@ -8,7 +8,7 @@ function: 百科检索数据层
 # 引入外部库
 import json
 import re
-import requests
+from bs4 import BeautifulSoup
 
 # 引入内部库
 from src.util.reptile import *
@@ -104,28 +104,24 @@ class EncyclopediaDao:
 			'rn': '5',
 			'pn': page,
 			'fr': 'search',
-			'is': 'utf8',
+			'ie': 'gbk',
 			'word': query
 		}
 
 		# 2.百科内容获取
 		reptile = Reptile()
-		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3)
-		content_list = json.loads(page_content)['query']['search']
+		page_content = reptile.get_page_content(url + '&'.join([key + '=' + parm[key] for key in parm]), timeout=3, is_cookie=True, charset='gbk')
+		bs = BeautifulSoup(page_content, "html.parser")
+		content_list = bs.body.find_all("dl", {'class': 'dl'})
 
 		# 3.百科内容格式化
 		data = []
-		prefix = 'https://zh.wikipedia.org/wiki/'
-		for index, item in enumerate(content_list):
-			date, time = item['timestamp'].rstrip('Z').split('T')
+		for item in content_list:
 			entry = {
-				'id': item['pageid'],
-				'index': index,
-				'create_date': date,
-				'create_time': time,
-				'title': item['title'],
-				'abstract': re.sub('[<span class=\"searchmatch\">,</span>]', '', item['snippet']),
-				'url': prefix + item['title'],
+				'create_date': item.find("dd", {'class': 'dd explain f-light'}).span.text,
+				'title': item.a.text,
+				'abstract': item.find("dd", {'class': 'dd answer'}).text,
+				'url': item.a.get('href')
 			}
 			data.append(entry)
 

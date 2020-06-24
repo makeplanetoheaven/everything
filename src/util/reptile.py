@@ -49,7 +49,7 @@ class Reptile:
 		# 等待时间
 		self.wait_time = wait_time
 
-	def get_page_content (self, url: str, timeout: int, is_ua=True, proxy=None, num_retries=6, charset='utf-8')->str:
+	def get_page_content (self, url: str, timeout: int, is_ua=True, is_cookie=False, proxy=None, num_retries=6, charset='utf-8')->str:
 		"""
 		通过指定url地址获取网页内容
 		:param url: 网址
@@ -66,8 +66,16 @@ class Reptile:
 		else:
 			ua = ""
 
+		if is_cookie:
+			cookie = "OCSSID=4df0bjva6j7ejussu8al3eqo03"
+		else:
+			cookie = ""
+
 		# 构造一个完整的User_Agent
-		header = {"User-Agent": ua, "Cookie": ""}
+		header = {
+			"User-Agent": ua,
+			"Cookie": cookie
+		}
 
 		# 当代理为空时，不使用代理获取response
 		if proxy is None:

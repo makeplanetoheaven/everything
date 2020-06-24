@@ -18,8 +18,8 @@ encyclopedia_controller_url = Blueprint('encyclopedia_controller', __name__, url
 
 class EncyclopediaController:
 	@staticmethod
-	@encyclopedia_controller_url.route('search_keys/', methods=['POST'])
-	def search_keys() -> dict:
+	@encyclopedia_controller_url.route('search_key/', methods=['POST'])
+	def search_key() -> dict:
 		"""
 		基于关键字百科检索功能实现
 		{

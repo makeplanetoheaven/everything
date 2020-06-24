@@ -62,9 +62,16 @@ class NewsOperator:
 		data = RetrieveResult(intent=self.intent, subintent=self.subintent[0])
 
 		# 信息检索
+		data_list = []
 		for i in range(pre_date, las_date + 1):
 			for d in domain:
-				data.set_data(self.domain_hotnews[d](date=str(i), nums=str(nums)))
+				data_list += self.domain_hotnews[d](date=str(i), nums=str(nums))
+
+		# 索引构建
+		for index, entry in enumerate(data_list):
+			entry['index'] = index
+		data.set_data(data_list)
+
 
 		return data
 
@@ -95,6 +102,10 @@ class NewsOperator:
 				break
 			data_list += news_list
 			page += 1
+
+		# 索引构建
+		for index, entry in enumerate(data_list):
+			entry['index'] = index
 		data.set_data(data_list[:nums])
 
 		return data

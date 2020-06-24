@@ -64,6 +64,10 @@ class EncyclopediaOperator:
 				break
 			data_list += faq_list
 			page += 1
+
+		# 索引构建
+		for index, entry in enumerate(data_list):
+			entry['index'] = index
 		data.set_data(data_list[:nums])
 
 		return data
