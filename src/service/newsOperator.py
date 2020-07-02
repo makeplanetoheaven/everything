@@ -110,16 +110,21 @@ class NewsOperator:
 
 		return data
 
-	def exception_handling(self, reason: str, fn_index: int) -> dict:
+	def exception_handling(self, param, code: int, index: int) -> dict:
 		"""
 		新闻检索异常处理
-		:param reason:
-		:param fn_index:
+		:param param:
+		:param code: 异常类型
+		:param index: 子意图索引
 		:return:
 		"""
 		# 检索对象创建
-		data = RetrieveResult(intent=self.intent, subintent=self.subintent[fn_index])
+		data = RetrieveResult(intent=self.intent, subintent=self.subintent[index])
+		exception_fn = {
+			1: data.get_miss_data
+		}
 
-		data_dict = data.get_exception_data(reason)
+		# 异常数据处理
+		data_dict = exception_fn[code](param)
 
 		return data_dict

@@ -49,7 +49,7 @@ class NewsController:
 
 		# 功能调用
 		data_object = service.get_domain_hotnews(domain=req_domain, date=req_date, nums=req_nums)
-		data_dict = data_object.get_dict_data()
+		data_dict = data_object.get_normal_data()
 
 		return data_dict
 
@@ -78,7 +78,7 @@ class NewsController:
 
 		# 参数预处理
 		if len(req_keys) == 0:
-			return service.exception_handling(reason='缺失搜索关键字参数！', fn_index=1)
+			return service.exception_handling(param=['keys'], code=1, index=1)
 		if req_method == '':
 			req_method = '标题'
 		if len(req_date) == 0:
@@ -88,6 +88,6 @@ class NewsController:
 
 		# 功能调用
 		data_object = service.get_search_news(keys=req_keys, method=req_method, date=req_date, nums=req_nums)
-		data_dict = data_object.get_dict_data()
+		data_dict = data_object.get_normal_data()
 
 		return data_dict

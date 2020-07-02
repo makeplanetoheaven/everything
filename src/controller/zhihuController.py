@@ -31,6 +31,6 @@ class ZhihuController:
 
 		# 功能调用
 		data_object = service.get_billboard()
-		data_dict = data_object.get_dict_data()
+		data_dict = data_object.get_normal_data()
 
 		return data_dict

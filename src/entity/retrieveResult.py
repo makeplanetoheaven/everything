@@ -34,30 +34,36 @@ class RetrieveResult:
 		"""
 		self.data += data_list
 
-	def get_dict_data(self) -> dict:
+	def get_normal_data(self) -> dict:
 		"""
-		返回数据的JSON格式
+		返回正常处理数据
+		status_code: 0
 		:return:
 		"""
 		data = {
 			'conf': self.conf,
 			'data': self.data,
-			'status': 1
+			'status': {   # 状态项
+				'code': 0
+			}
 		}
 
 		return data
 
-	def get_exception_data(self, reason) -> dict:
+	def get_miss_data(self, param: list) -> dict:
 		"""
-		异常检索数据构建
-		:param reason:
+		返回参数缺失数据
+		status_code: 1
+		:param param:
 		:return:
 		"""
 		data = {
 			'conf': self.conf,
 			'data': self.data,
-			'status': 0,
-			'exception_reason': reason
+			'status': {   # 状态项
+				'code': 1,
+				'param': param
+			}
 		}
 
 		return data
