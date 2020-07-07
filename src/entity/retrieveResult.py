@@ -19,6 +19,7 @@ class RetrieveResult:
 		"""
 		# 配置项
 		self.conf = {
+			'system': '信息检索',
 			'intent': intent,
 			'subintent': subintent,
 		}
