@@ -23,7 +23,7 @@ class NewsController:
 		"""
 		热点新闻检索功能实现
 		{
-		'domain': list, [d1, d2, ...] 可空
+		'domains': list, [d1, d2, ...] 可空
 		'date': list, [pre, las] 可空
 		'nums': int 可空
 		}
@@ -31,7 +31,7 @@ class NewsController:
 		"""
 		# 参数获取
 		param = request.get_json()
-		req_domain = param['domain']
+		req_domains = param['domains']
 		req_date = param['date']
 		req_nums = param['nums']
 
@@ -39,8 +39,8 @@ class NewsController:
 		service = NewsOperator()
 
 		# 参数预处理
-		if len(req_domain) == 0:
-			req_domain = ['默认']
+		if len(req_domains) == 0:
+			req_domains = ['默认']
 		if len(req_date) == 0:
 			cur_t = time.strftime(globalArgs.get_value('io_date'), time.localtime(time.time()))
 			req_date = [cur_t, cur_t]
@@ -48,7 +48,7 @@ class NewsController:
 			req_nums = 10
 
 		# 功能调用
-		data_object = service.get_domain_hotnews(domain=req_domain, date=req_date, nums=req_nums)
+		data_object = service.get_domain_hotnews(domains=req_domains, date=req_date, nums=req_nums)
 		data_dict = data_object.get_normal_data()
 
 		return data_dict

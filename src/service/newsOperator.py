@@ -45,10 +45,10 @@ class NewsOperator:
 			'内容': 'all'
 		}
 
-	def get_domain_hotnews (self, domain: list, date: list, nums: int) -> RetrieveResult:
+	def get_domain_hotnews (self, domains: list, date: list, nums: int) -> RetrieveResult:
 		"""
 		获取指定领域的热点新闻
-		:param domain:
+		:param domains:
 		:param date:
 		:param nums:
 		:return:
@@ -64,7 +64,7 @@ class NewsOperator:
 		# 信息检索
 		data_list = []
 		for i in range(pre_date, las_date + 1):
-			for d in domain:
+			for d in domains:
 				data_list += self.domain_hotnews[d](date=str(i), nums=str(nums))
 
 		# 索引构建
